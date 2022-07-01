@@ -1,0 +1,67 @@
+From 5f1561aa573016dac778005a7274352515014946 Mon Sep 17 00:00:00 2001
+From: libing64 <libing64@gmail.com>
+Date: Fri, 8 Jan 2021 23:27:29 +0800
+Subject: [PATCH] fix: fix building error on ubuntu20.04
+
+---
+ camera_model/include/camodocal/calib/CameraCalibration.h | 3 +++
+ camera_model/include/camodocal/camera_models/Camera.h    | 3 +++
+ camera_model/include/camodocal/chessboard/Chessboard.h   | 4 ++++
+ pose_graph/src/ThirdParty/DVision/BRIEF.h                | 1 +
+ 4 files changed, 11 insertions(+)
+
+diff --git a/camera_model/include/camodocal/calib/CameraCalibration.h b/camera_model/include/camodocal/calib/CameraCalibration.h
+index ac80f690..a8bc956e 100644
+--- a/camera_model/include/camodocal/calib/CameraCalibration.h
++++ b/camera_model/include/camodocal/calib/CameraCalibration.h
+@@ -2,6 +2,9 @@
+ #define CAMERACALIBRATION_H
+ 
+ #include <opencv2/core/core.hpp>
++#include <opencv2/imgcodecs/legacy/constants_c.h>
++#include <opencv2/imgproc/types_c.h>
++#include <opencv2/imgproc/imgproc_c.h>
+ 
+ #include "camodocal/camera_models/Camera.h"
+ 
+diff --git a/camera_model/include/camodocal/camera_models/Camera.h b/camera_model/include/camodocal/camera_models/Camera.h
+index be8b6218..b8808c10 100644
+--- a/camera_model/include/camodocal/camera_models/Camera.h
++++ b/camera_model/include/camodocal/camera_models/Camera.h
+@@ -4,6 +4,9 @@
+ #include <boost/shared_ptr.hpp>
+ #include <eigen3/Eigen/Dense>
+ #include <opencv2/core/core.hpp>
++#include <opencv2/imgcodecs/legacy/constants_c.h>
++#include <opencv2/imgproc/types_c.h>
++#include <opencv2/imgproc/imgproc_c.h>
+ #include <vector>
+ 
+ namespace camodocal
+diff --git a/camera_model/include/camodocal/chessboard/Chessboard.h b/camera_model/include/camodocal/chessboard/Chessboard.h
+index fb421988..6b4abb61 100644
+--- a/camera_model/include/camodocal/chessboard/Chessboard.h
++++ b/camera_model/include/camodocal/chessboard/Chessboard.h
+@@ -3,6 +3,10 @@
+ 
+ #include <boost/shared_ptr.hpp>
+ #include <opencv2/core/core.hpp>
++#include <opencv2/imgcodecs/legacy/constants_c.h>
++#include <opencv2/imgproc/types_c.h>
++#include <opencv2/imgproc/imgproc_c.h>
++#include <opencv2/calib3d/calib3d_c.h>
+ 
+ namespace camodocal
+ {
+diff --git a/pose_graph/src/ThirdParty/DVision/BRIEF.h b/pose_graph/src/ThirdParty/DVision/BRIEF.h
+index 78d9fbfa..4e7771d3 100644
+--- a/pose_graph/src/ThirdParty/DVision/BRIEF.h
++++ b/pose_graph/src/ThirdParty/DVision/BRIEF.h
+@@ -30,6 +30,7 @@
+ #define __D_BRIEF__
+ 
+ #include <opencv2/opencv.hpp>
++#include <opencv2/imgproc/imgproc_c.h>
+ #include <vector>
+ #include <boost/dynamic_bitset.hpp>
+ 
