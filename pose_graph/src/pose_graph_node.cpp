@@ -229,7 +229,7 @@ void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
     ypr(0)    += 90.0*3.14159/180.0;
     q          = Utility::ypr2R(ypr); 
         
-    meshROS.header.frame_id = string("/world");
+    meshROS.header.frame_id = string("world");
     meshROS.header.stamp = msg->header.stamp; 
     meshROS.ns = "mesh";
     meshROS.id = sequence;
