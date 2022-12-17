@@ -1,0 +1,12 @@
+digraph G {
+"world" -> "d1_world"[label=" Broadcaster: /d1/vins_estimator\nAverage rate: 10.176\nBuffer length: 4.914\nMost recent transform: 1650777784.68\nOldest transform: 1650777779.766\n"];
+"d1_world" -> "d1_body"[label=" Broadcaster: /d1/vins_estimator\nAverage rate: 10.176\nBuffer length: 4.914\nMost recent transform: 1650777784.68\nOldest transform: 1650777779.766\n"];
+"d1_body" -> "d1_camera"[label=" Broadcaster: /d1/vins_estimator\nAverage rate: 10.176\nBuffer length: 4.914\nMost recent transform: 1650777784.68\nOldest transform: 1650777779.766\n"];
+"world" -> "d2_world"[label=" Broadcaster: /d2/vins_estimator\nAverage rate: 10.936\nBuffer length: 2.56\nMost recent transform: 1650777782.364\nOldest transform: 1650777779.804\n"];
+"d2_world" -> "d2_body"[label=" Broadcaster: /d2/vins_estimator\nAverage rate: 10.936\nBuffer length: 2.56\nMost recent transform: 1650777782.364\nOldest transform: 1650777779.804\n"];
+"d2_body" -> "d2_camera"[label=" Broadcaster: /d2/vins_estimator\nAverage rate: 10.936\nBuffer length: 2.56\nMost recent transform: 1650777782.364\nOldest transform: 1650777779.804\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1652183903.222175"[ shape=plaintext ] ;
+}->"world";
+}

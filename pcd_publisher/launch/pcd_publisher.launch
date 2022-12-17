@@ -1,0 +1,9 @@
+<launch>
+    <arg name="config_path" default="/home/aneesh/UbuntuStorage/RRC/ws/covins_ws/src/Co-VINS/config/minihattan/minihattan_config_d1.yaml"/>
+    <arg name="ns" default="d1" />
+
+    <node name="pcd_publisher_node" pkg="pcd_publisher" type="pcd_publisher_node" output="screen" ns="$(arg ns)">
+        <param name="config_file" type="string" value="$(arg config_path)" />
+        <param name="tf_prefix" value="$(arg ns)_" />
+    </node>
+</launch>
