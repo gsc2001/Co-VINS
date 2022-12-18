@@ -311,8 +311,8 @@ int main(int argc, char **argv)
     ros::Subscriber sub_agent_msg = n.subscribe("/agent_frame", 2000, agent_callback);
     ros::Subscriber sub_odom1 = n.subscribe("/vins_1/vins_estimator/odometry",  100,  odom_callback);
     ros::Subscriber sub_odom2 = n.subscribe("/vins_2/vins_estimator/odometry",  100,  odom_callback);
-    ros::Subscriber sub_odom3 = n.subscribe("/vins_3/vins_estimator/odometry",  100,  odom_callback);
-    ros::Subscriber sub_odom4 = n.subscribe("/vins_4/vins_estimator/odometry",  100,  odom_callback);
+    // ros::Subscriber sub_odom3 = n.subscribe("/vins_3/vins_estimator/odometry",  100,  odom_callback);
+    // ros::Subscriber sub_odom4 = n.subscribe("/vins_4/vins_estimator/odometry",  100,  odom_callback);
 
     meshPub = n.advertise<visualization_msgs::Marker>("robot", 100, true); 
 
