@@ -320,7 +320,7 @@ void pubTF(const Estimator &estimator, const std_msgs::Header &header)
     q.setY(correct_q.y());
     q.setZ(correct_q.z());
     transform.setRotation(q);
-    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "body"));
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "drone_" + to_string(AGENT_NUM), "body" + to_string(AGENT_NUM)));
 
     // camera frame
     transform.setOrigin(tf::Vector3(estimator.tic[0].x(),
@@ -331,7 +331,7 @@ void pubTF(const Estimator &estimator, const std_msgs::Header &header)
     q.setY(Quaterniond(estimator.ric[0]).y());
     q.setZ(Quaterniond(estimator.ric[0]).z());
     transform.setRotation(q);
-    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "body", "camera"));
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "body" + to_string(AGENT_NUM), "camera" + to_string(AGENT_NUM)));
 
     nav_msgs::Odometry odometry;
     odometry.header = header;

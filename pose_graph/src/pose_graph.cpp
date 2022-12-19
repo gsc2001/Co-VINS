@@ -947,11 +947,13 @@ void PoseGraph::publishTF()
     tf::Quaternion q;
     
     map<int, bool>::iterator iter;
+    vector<bool> done_seq(4, false);
     for (iter = sequence_align_world.begin(); iter != sequence_align_world.end(); iter++)
     {
         if (iter->second)
         {
             int sequence = iter->first;
+            done_seq[sequence-1] = true;
 
             Vector3d TF_t;
             Quaterniond TF_q;
@@ -964,9 +966,20 @@ void PoseGraph::publishTF()
             q.setY(TF_q.y());
             q.setZ(TF_q.z());
             transform.setRotation(q);
-            br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "/global", "/drone_" + to_string(sequence)));
+            br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "/world", "/drone_" + to_string(sequence)));
             //printf("%d tf t %f %f %f \n", sequence, TF_t.x(), TF_t.y(),TF_t.z());
             //printf("%d tf q %f %f %f %f \n", sequence, TF_q.w(),TF_q.x(), TF_q.y(), TF_q.z());
+        }
+    }
+    transform.setOrigin(tf::Vector3(0,0,0));
+    q.setW(1);
+    q.setX(0);
+    q.setY(0);
+    q.setZ(0);
+    transform.setRotation(q);
+    for(int i = 1 ; i <= 4; i ++) {
+        if(!done_seq[i-1]) {
+            br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "/world", "/drone_" + to_string(i)));
         }
     }
 }

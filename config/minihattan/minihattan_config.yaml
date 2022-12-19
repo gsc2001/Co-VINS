@@ -16,18 +16,18 @@ image_topic: "image"
 #camera calibration
 model_type: PINHOLE
 camera_name: camera
-image_width: 256
-image_height: 144
+image_width: 640
+image_height: 480
 distortion_parameters:
    k1: 0.0
    k2: 0.0
    p1: 0.0
    p2: 0.0
 projection_parameters:
-   fx: 123
-   fy: 123
-   cx: 123
-   cy: 72
+   fx: 320
+   fy: 320
+   cx: 320.0
+   cy: 240.0
 
 # Extrinsic parameter between IMU and Camera.
 estimate_extrinsic: 0   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
@@ -64,8 +64,8 @@ globalTranslation: !!opencv-matrix
 
 
 #feature traker paprameters
-max_cnt: 200            # max feature number in feature tracking
-min_dist: 10            # min distance between two features
+max_cnt: 150            # max feature number in feature tracking
+min_dist: 20            # min distance between two features
 freq: 10                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image
 F_threshold: 1.0        # ransac threshold (pixel)
 show_track: 1           # publish tracking image as topic
@@ -104,3 +104,4 @@ visualize_imu_forward: 0        # output imu forward propogation to achieve low 
 visualize_camera_size: 0.4      # size of camera marker in RVIZ
 
 swarm_agent: 1
+

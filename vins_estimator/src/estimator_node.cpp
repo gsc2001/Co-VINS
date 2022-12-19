@@ -428,7 +428,7 @@ void agent_process()
 
                 cv::Mat img = ptr->image;
                 pubAgentFrame(tmp_msg, img, m_camera);
-            }
+            }  
             //ROS_WARN("pub agent frame time %f", pubAgentFrame_time.toc());
 
         }

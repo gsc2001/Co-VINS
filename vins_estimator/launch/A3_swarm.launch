@@ -1,8 +1,8 @@
 <launch>
-	<arg name="sequence_1" default = "/Users/gsc2001/IIIT-Stuff/RRC/data/covins/vins_swarm/1.bag" />
-	<arg name="sequence_2" default = "/Users/gsc2001/IIIT-Stuff/RRC/data/covins/vins_swarm/2.bag" />
-	<arg name="sequence_3" default = "/Users/gsc2001/IIIT-Stuff/RRC/data/covins/vins_swarm/3.bag" />
-	<arg name="sequence_4" default = "/Users/gsc2001/IIIT-Stuff/RRC/data/covins/vins_swarm/4.bag" />
+	<arg name="sequence_1" default = "/home/ubuntu/IIIT-Stuff/RRC/data/covins/vins_swarm/1.bag" />
+	<arg name="sequence_2" default = "/home/ubuntu/IIIT-Stuff/RRC/data/covins/vins_swarm/2.bag" />
+	<arg name="sequence_3" default = "/home/ubuntu/IIIT-Stuff/RRC/data/covins/vins_swarm/3.bag" />
+	<arg name="sequence_4" default = "/home/ubuntu/IIIT-Stuff/RRC/data/covins/vins_swarm/4.bag" />
 	
 <group ns="vins_1">
 	<param name="config_file" type="string" value="$(find feature_tracker)/../config/A3/A3_config_local.yaml" />
@@ -47,6 +47,6 @@
         <param name="pose_graph_result_path" type="string" value="/home/tony-ws1/output/" />
     </node>
 
-    <!-- <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find vins_estimator)/../config/multi_agent_rviz.rviz" /> -->
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find vins_estimator)/../config/multi_agent_rviz.rviz" />
     
 </launch>

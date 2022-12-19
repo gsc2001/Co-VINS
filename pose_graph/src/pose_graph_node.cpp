@@ -192,6 +192,9 @@ void command()
 
 void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
 {
+
+
+
     // Mesh model           
     //ROS_INFO("odometry callback");       
     int sequence = std::stoi(msg->child_frame_id);
@@ -203,7 +206,7 @@ void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
 
     tf::StampedTransform transform;
     try{
-        listener->lookupTransform("/global", "/drone_" + to_string(sequence),
+        listener->lookupTransform("/world", "/drone_" + to_string(sequence),
                                 ros::Time(0), transform);
 
         tf::Vector3 tf_t = transform.getOrigin();
@@ -229,7 +232,7 @@ void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
     ypr(0)    += 90.0*3.14159/180.0;
     q          = Utility::ypr2R(ypr); 
         
-    meshROS.header.frame_id = string("world");
+    meshROS.header.frame_id = "world";
     meshROS.header.stamp = msg->header.stamp; 
     meshROS.ns = "mesh";
     meshROS.id = sequence;
@@ -238,10 +241,10 @@ void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
     meshROS.pose.position.x = t.x();
     meshROS.pose.position.y = t.y();
     meshROS.pose.position.z = t.z();
-    meshROS.pose.orientation.w = 1;
-    meshROS.pose.orientation.x = 0;
-    meshROS.pose.orientation.y = 0;
-    meshROS.pose.orientation.z = 0;
+    meshROS.pose.orientation.w = q.w();
+    meshROS.pose.orientation.x = q.x();
+    meshROS.pose.orientation.y = q.y();
+    meshROS.pose.orientation.z = q.z();
     meshROS.scale.x = 1;
     meshROS.scale.y = 1;
     meshROS.scale.z = 1;
@@ -311,8 +314,8 @@ int main(int argc, char **argv)
     ros::Subscriber sub_agent_msg = n.subscribe("/agent_frame", 2000, agent_callback);
     ros::Subscriber sub_odom1 = n.subscribe("/vins_1/vins_estimator/odometry",  100,  odom_callback);
     ros::Subscriber sub_odom2 = n.subscribe("/vins_2/vins_estimator/odometry",  100,  odom_callback);
-    // ros::Subscriber sub_odom3 = n.subscribe("/vins_3/vins_estimator/odometry",  100,  odom_callback);
-    // ros::Subscriber sub_odom4 = n.subscribe("/vins_4/vins_estimator/odometry",  100,  odom_callback);
+    ros::Subscriber sub_odom3 = n.subscribe("/vins_3/vins_estimator/odometry",  100,  odom_callback);
+    ros::Subscriber sub_odom4 = n.subscribe("/vins_4/vins_estimator/odometry",  100,  odom_callback);
 
     meshPub = n.advertise<visualization_msgs::Marker>("robot", 100, true); 
 
