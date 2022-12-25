@@ -1,10 +1,10 @@
 <launch>
-    <arg name="top_bag" default="/home/ubuntu/IIIT-Stuff/RRC/data/offsetSquareSine/remadeFull1.bag"/>
-    <arg name="inner_bag" default="/home/ubuntu/IIIT-Stuff/RRC/data/offsetSquareSine/remadeFull2_offset.bag"/>
+    <arg name="top_bag" default="/home/aneesh/UbuntuStorage/Airsim-Recording-Scripts/offsetSquareSine/remadeFull1.bag"/>
+    <arg name="inner_bag" default="/home/aneesh/UbuntuStorage/Airsim-Recording-Scripts/offsetSquareSine/remadeFull2_offset.bag"/>
     <!-- <arg name="minihatan_bag" default="/home/aneesh/UbuntuStorage/RRC/datasets/SmallSquare/14secs.bag"/> -->
 
     <group ns="vins_1">
-        <node pkg="rosbag" type="play" name="player" output="log" args="$(arg top_bag) /d1/imu:=imu /d1/image:=image" />
+        <node pkg="rosbag" type="play" name="player" output="log" args="$(arg top_bag) /d1/imu:=imu /d1/image:=image /d1/depth:=depth" />
         <param name="config_file" type="string" value="$(find feature_tracker)/../config/minihattan/minihattan_config.yaml" />
         <param name="vins_folder" type="string" value="$(find feature_tracker)/../config/../" />
         <param name="agent_num" type="int" value="1" />
@@ -13,7 +13,7 @@
     </group>
 
     <group ns="vins_2">
-        <node pkg="rosbag" type="play" name="player" output="log" args="$(arg inner_bag) /d1/imu:=imu /d1/image:=image" />
+        <node pkg="rosbag" type="play" name="player" output="log" args="$(arg inner_bag) /d1/imu:=imu /d1/image:=image /d1/depth:=depth" />
         <param name="config_file" type="string" value="$(find feature_tracker)/../config/minihattan/minihattan_config.yaml" />
         <param name="vins_folder" type="string" value="$(find feature_tracker)/../config/../" />
         <param name="agent_num" type="int" value="2" />

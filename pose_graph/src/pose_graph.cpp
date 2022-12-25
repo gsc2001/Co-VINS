@@ -22,8 +22,10 @@ void PoseGraph::registerPub(ros::NodeHandle &n)
     pub_pg_path = n.advertise<nav_msgs::Path>("pose_graph_path", 1000);
     pub_base_path = n.advertise<nav_msgs::Path>("base_path", 1000);
     pub_pose_graph = n.advertise<visualization_msgs::MarkerArray>("pose_graph", 1000);
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 7; i++){
         pub_path[i] = n.advertise<nav_msgs::Path>("path_" + to_string(i), 1000);
+        pub_pcd[i] = n.advertise<sensor_msgs::PointCloud>("pcd_" + to_string(i), 1000);
+    }
 }
 
 void PoseGraph::loadVocabulary(std::string voc_path)
@@ -933,6 +935,7 @@ void PoseGraph::publish()
         int sequence = iter->first; 
         pub_pg_path.publish(path[sequence]);
         pub_path[sequence].publish(path[sequence]);
+        pub_pcd[sequence].publish(pcd[sequence]);
         posegraph_visualization->publish_by(pub_pose_graph, path[sequence].header);
     }
     pub_base_path.publish(base_path);

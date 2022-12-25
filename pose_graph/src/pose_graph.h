@@ -44,6 +44,7 @@ public:
 	void loadVocabulary(std::string voc_path);
 	KeyFrame* getKeyFrame(int index);
 	nav_msgs::Path path[10];
+	sensor_msgs::PointCloud pcd[10];		// stores pcds for each drone
 	nav_msgs::Path base_path;
 	CameraPoseVisualization* posegraph_visualization;
 	void savePoseGraph();
@@ -77,6 +78,7 @@ private:
 	ros::Publisher pub_base_path;
 	ros::Publisher pub_pose_graph;
 	ros::Publisher pub_path[10];
+	ros::Publisher pub_pcd[10];
 
 	//swarm variable
 	int first_sequence;

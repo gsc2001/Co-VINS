@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/aneesh/UbuntuStorage/RRC/ws/covins_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/aneesh/UbuntuStorage/RRC/ws/covins_ws/src/Co-VINS/camera_model/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
