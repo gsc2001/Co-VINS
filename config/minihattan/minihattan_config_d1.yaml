@@ -7,6 +7,7 @@
 # Bagfile topics
 imu_topic: "/imu"
 image_topic: "/image"
+pcd_stride: 5
 
 # Airsim topics
 #imu_topic: "/airsim_node/drone/imu/Imu"
